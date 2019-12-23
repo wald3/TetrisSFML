@@ -1,0 +1,10 @@
+﻿  main.cpp
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(42,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(53,33): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(75,65): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(129,40): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(140,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(140,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(148,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(148,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SFMLTestApp.vcxproj -> C:\Users\Vladislav\source\repos\SFMLTestApp\Debug\SFMLTestApp.exe
