@@ -23,9 +23,6 @@
     <Image Include="img\background.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="img\tiles.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="img\frame.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -35,5 +32,16 @@
     <Image Include="img\titles2.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="img\titles.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\new-background(522x442).png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\SevenSidedGames.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>
