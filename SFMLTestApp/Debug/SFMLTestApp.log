@@ -1,42 +1,62 @@
 ﻿  main.cpp
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(46,55): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(58,45): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(46,36): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(58,27): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(53,84): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(95,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(53,31): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(95,35): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(106,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(124,35): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(157,69): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(239,44): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(252,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(252,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(261,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(261,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(262,92): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(103,55): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(262,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(103,36): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(270,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(270,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(110,91): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(110,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(161,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(178,35): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(213,69): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(297,44): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(310,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(310,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(319,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(319,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(320,92): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(320,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(328,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vladislav\source\repos\SFMLTestApp\SFMLTestApp\main.cpp(328,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SFMLTestApp.vcxproj -> C:\Users\Vladislav\source\repos\SFMLTestApp\Debug\SFMLTestApp.exe

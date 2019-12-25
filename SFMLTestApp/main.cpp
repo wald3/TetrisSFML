@@ -2,13 +2,15 @@
 #include <time.h>
 #include <iostream>
 
+#include "ScoreSaver.h"
+
 using namespace sf;
 
 const int M = 20;
 const int N = 10;
 
 sf::Font font;
-sf::Text scoreLabel, score;
+sf::Text scoreLabel, currentScore, nextFigure;
 
 int cIndx, nIndx, _score = 0;
 
@@ -17,6 +19,11 @@ int field[M][N] = { 0 };
 Vector2u spawn(4, -4);
 Vector2u nextSpawn(401, 121);
 Vector2u ScoreLabelSpawn(401, 18);
+Vector2u NextLabelSpawn(401, 98);
+Vector2u ScoresSpawn(20, 0);
+
+std::vector<sc::Score> _scores;
+std::vector<Text> _scoresText;
 
 struct Point
 {
@@ -34,30 +41,78 @@ int figures[7][4] =
     2,3,4,5, // O
 };
 
+void setScores() {
+
+    int count = 0;
+    for (auto score : _scores)
+    {
+        count++;
+        sf::Text s;
+        s.setFont(font);
+        s.setString(std::to_string(count) + " - " + std::to_string(score.Value));
+        s.setCharacterSize(20);
+        if (count == 1) s.setFillColor(sf::Color(255, 236, 54));
+        if (count == 2) s.setFillColor(sf::Color(188, 188, 188));
+        if (count == 3) s.setFillColor(sf::Color(245, 129, 18));
+        if (count  > 3) s.setFillColor(sf::Color::Black);
+        s.move(ScoresSpawn.x, ScoresSpawn.y + count * 20);
+        if (count > 20) break;
+        _scoresText.push_back(s);
+    }
+}
+
+void loadScores() {
+    sv::ScoreSaver saver;
+
+    _scores = saver.loadScore();
+    std::sort(_scores.begin(), _scores.end(), sc::sorter);
+    setScores();
+}
+
+void saveScores() {
+    sv::ScoreSaver saver;
+    sc::Score s;
+    std::string stringValue = currentScore.getString();
+
+    std::cout << "score "<< atoi(stringValue.c_str()) << std::endl;
+    s.Value = atoi(stringValue.c_str());
+    _scores.push_back(s);
+
+   saver.saveScore(_scores);
+   std::cout << "save" << std::endl;
+}
+
+
+
 void setupFont()
 {
-    font.loadFromFile("fonts/SevenSidedGames.ttf");
+    font.loadFromFile("fonts/SFSquareHead.ttf");
+    // Score label
+    nextFigure.setFont(font);
+    nextFigure.setString("Next:");
+    nextFigure.setCharacterSize(20);
+    nextFigure.setFillColor(sf::Color::Black);
+    nextFigure.move(NextLabelSpawn.x, NextLabelSpawn.y);
+
 
     // Score label
     scoreLabel.setFont(font);
-    scoreLabel.setString("Score");
+    scoreLabel.setString("Score:");
     scoreLabel.setCharacterSize(20); 
     scoreLabel.setFillColor(sf::Color::Black);
     scoreLabel.move(ScoreLabelSpawn.x, ScoreLabelSpawn.y);
 
     // Score
-    score.setFont(font);
-    score.setString(std::to_string(_score));
-    score.setCharacterSize(18);
-    score.setFillColor(sf::Color::Black);
-    score.move(ScoreLabelSpawn.x, ScoreLabelSpawn.y + scoreLabel.getCharacterSize()+1);
+    currentScore.setFont(font);
+    currentScore.setString(std::to_string(_score));
+    currentScore.setCharacterSize(18);
+    currentScore.setFillColor(sf::Color::Black);
+    currentScore.move(ScoreLabelSpawn.x, ScoreLabelSpawn.y + scoreLabel.getCharacterSize()+1);
 }
-
-
-
 
 void clearField() 
 {
+    std::cout << "clear field" << std::endl;
     for (int i = -4; i < 20; i++)
     {
         for (int j = 0; j < 10; j++)
@@ -104,16 +159,15 @@ bool check()
 int main()
 {
     srand(time(0));
+    loadScores();
     setupFont();
     figureInit(current, cIndx);
     figureInit(next, nIndx);
     
-    RenderWindow window(VideoMode(522,442), "The Game!");
+    RenderWindow window(VideoMode(522,442), "TETRIS");
     Texture t1, t2, t3;
     t1.loadFromFile("img/titles2.png");
-    t2.loadFromFile("img/new-background(522x442).png");
-
-    
+    t2.loadFromFile("img/new-background(522x442).png");    
         
     Sprite s(t1), background(t2);
     
@@ -143,11 +197,13 @@ int main()
                     isPlayable = true;
                     figureInit(current, cIndx);
                     figureInit(next, nIndx);
+                    loadScores();
                 }
         }
         
         if (isPlayable)
         {
+
             //std::cout << "---game---" << std::endl;
             float time = clock.getElapsedTime().asSeconds();
             clock.restart();
@@ -183,14 +239,15 @@ int main()
                 {
                     if (isGameOver())
                     {
-                        //Point p = {0};
                         for (int i = 0;i < 4;i++) { current[i] = next[i] = {0}; }
                         std::cout <<"game over" << std::endl;
                         isPlayable = false;
                         clearField();
                         window.clear(Color::White);
                         window.draw(background);
-                        //window.display();
+
+                        saveScores();
+                        loadScores();
                     }
                     else
                     {
@@ -229,10 +286,11 @@ int main()
             if (lines) {
                 std::cout << lines << std::endl;
                 _score += (100 * lines) * lines;
-                score.setString(std::to_string(_score));
-                //std::cout << _score << std::endl;
+                //std::cout << "score: " << _score << std::endl;
+                currentScore.setString(std::to_string(_score));
+                
             }
-
+            std::cout << "score: " << _score << std::endl;
             
             
 
@@ -276,15 +334,29 @@ int main()
                 }
             }
         }
-        if (isPlayable) { window.draw(scoreLabel); window.draw(score); window.display(); }
-        else {
-            
-            window.clear(Color::White);
-            window.draw(background);
+        if (isPlayable) 
+        {
+            window.draw(scoreLabel);
+            window.draw(currentScore);
+            window.draw(nextFigure);
+            for (auto score : _scoresText)
+            {
+                window.draw(score);
+            }
             window.display();
         }
-        
-        
+        else 
+        {
+            window.clear(Color::White);
+            window.draw(background);
+            window.draw(scoreLabel);
+            window.draw(nextFigure);
+            for (auto score : _scoresText)
+            {
+                window.draw(score);
+            }
+            window.display();
+        }
     }
     return 0;
 }
