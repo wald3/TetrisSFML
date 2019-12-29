@@ -63,7 +63,7 @@ void setScores() {
 
 void loadScores() {
     sv::ScoreSaver saver;
-
+    _scores.clear();
     _scores = saver.loadScore();
     std::sort(_scores.begin(), _scores.end(), sc::sorter);
     setScores();
@@ -134,23 +134,44 @@ void figureInit(Point p[], int &index) {
 
 bool isGameOver()
 {
+    bool isGameOver = false;
     for (int i = 0;i < 4;i++)
         if (current[i].y < 0)
         {
-            return true;
+            std::cout << current[i].x << ":" << current[i].y << std::endl;
+            isGameOver = true;
         }
 
-    return false;
+    return isGameOver;
 };
+
+bool isInBounds() {
+    for (int i = 0;i < 4;i++)
+        if (current[i].x < 0 || current[i].x >= N || current[i].y >= M) {
+            std::cout << "bounds" << std::endl; 
+            return 0;
+        }
+    return 1;
+}
+
+bool isBlocked() {
+    for (int i = 0;i < 4;i++)
+       if (field[current[i].y][current[i].x]) {
+                std::cout << "blocked" << std::endl; 
+                return 1;
+       }
+    return 0;
+}
+
 
 bool check()
 {
     for (int i = 0;i < 4;i++)
         if (current[i].x < 0 || current[i].x >= N || current[i].y >= M) {
-            std::cout << "bounds" << std::endl; return 0;
+            std::cout << "bounds/" << std::endl; return 0;
         }
         else if (field[current[i].y][current[i].x]) {
-            std::cout << "blocked" << std::endl;return 0;
+            std::cout << "blocked/" << std::endl;return 0;
         }
 
     return 1;
@@ -193,11 +214,14 @@ int main()
                 else if (e.key.code == Keyboard::Right) dx = 1;
                 else if (e.key.code == Keyboard::Space) 
                 {
-                    std::cout << "\nnew game" << std::endl;
-                    isPlayable = true;
-                    figureInit(current, cIndx);
-                    figureInit(next, nIndx);
-                    loadScores();
+                    if (!isPlayable)
+                    {
+                        std::cout << "\nnew game" << std::endl;
+                        isPlayable = true;
+                        figureInit(current, cIndx);
+                        figureInit(next, nIndx);
+                        loadScores();
+                    }
                 }
         }
         
@@ -214,7 +238,7 @@ int main()
 
             //// <- Move -> ///
             for (int i = 0;i < 4;i++) { previous[i] = current[i]; current[i].x += dx; }
-            if (!check()) for (int i = 0;i < 4;i++) current[i] = previous[i];
+            if (!isInBounds() || isBlocked()) for (int i = 0;i < 4;i++) current[i] = previous[i];
 
             //////Rotate//////
             if (rotate)
@@ -227,7 +251,7 @@ int main()
                     current[i].x = p.x - x;
                     current[i].y = p.y + y;
                 }
-                if (!check()) for (int i = 0;i < 4;i++) current[i] = previous[i];
+                if (!isInBounds() || isBlocked()) for (int i = 0;i < 4;i++) current[i] = previous[i];
             }
 
             ///////Tick//////
@@ -235,7 +259,7 @@ int main()
             {
                 for (int i = 0;i < 4;i++) { previous[i] = current[i]; current[i].y += 1; }
 
-                if (!check())
+                if (isBlocked())
                 {
                     if (isGameOver())
                     {
@@ -290,9 +314,6 @@ int main()
                 currentScore.setString(std::to_string(_score));
                 
             }
-            std::cout << "score: " << _score << std::endl;
-            
-            
 
             dx = 0; rotate = 0; delay = 0.3;
 
